@@ -1,0 +1,97 @@
+body{
+	background-color:#1e1e1e;
+}
+.nav {
+  background: linear-gradient(to bottom,  #4A84B5,  #6171FF);
+  overflow: hidden;
+  border-radius:5px;
+}
+.nav a {
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 25px;
+	border-radius:5px;
+}
+.nav a.active {
+	background-color: #4AB5B1;
+	color: white;
+}
+.nav .icon {
+	display: none;
+}
+.dropdown {
+	float: left;
+	overflow: hidden;
+}
+.dropdown .dropbtn {
+	font-size: 25px;
+	border: none;
+	outline: none;
+	color: white;
+	padding: 14px 16px;
+	background-color: inherit;
+	font-family: inherit;
+	margin: 0;
+}
+.dropdown-content {
+	display: none;
+	position: absolute;
+	color: #fff;
+	background-color: #62b3f5;
+	min-width: 200px;
+	z-index: 1;
+	border-radius: 5px;
+}
+.dropdown-content a {
+	float: none;
+	color: black;
+	padding: 20px;
+	text-decoration: none;
+	display: block;
+	text-align: center;
+	font-size:20px;
+}
+.nav a:hover, .dropdown:hover .dropbtn {
+	color: #FFFFFF;
+	background-color: #4A4EB5;
+}
+.dropdown-content a:hover {
+	background-color: #4A4EB5;
+	color: white;
+}
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+@media screen and (max-width: 600px) {
+	.nav a:not(:first-child), .dropdown .dropbtn {
+		display: none;
+	}
+	.nav a.icon {
+		float: right;
+		display: block;
+	}
+}
+@media screen and (max-width: 600px) {
+	.nav.responsive {position: relative;}
+	.nav.responsive a.icon {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	.nav.responsive a {
+		float: none;
+		display: block;
+		text-align: left;
+	}
+	.nav.responsive .dropdown {float: none;}
+	.nav.responsive .dropdown-content {position: relative;}
+	.nav.responsive .dropdown .dropbtn {
+		display: block;
+		width: 100%;
+		text-align: left;
+	}
+}

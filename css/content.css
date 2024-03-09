@@ -1,0 +1,38 @@
+#img .content{
+	position: relative;
+	text-align: center;
+	color: white;
+}
+#img .text{
+	position: absolute;
+	text-align:center;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
+.row {
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+
+.column2 {
+  flex: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 600px) {
+
+}
