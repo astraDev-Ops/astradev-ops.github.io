@@ -1,7 +1,13 @@
 #img .content{
+	display:block;
 	position: relative;
 	text-align: center;
 	color: white;
+}
+.landing{
+	background-image: url(../img/home_mc.png);
+	background-position: center;
+    background-repeat: no-repeat;
 }
 #img .text{
 	position: absolute;
@@ -10,8 +16,6 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
-
-
 .row {
 	display: flex;
     flex-direction: row;
@@ -24,15 +28,22 @@
   flex: 50%;
 }
 
-
-
-
-
-
-
-
+.landingTitle {
+	color:#fff;
+	font-size:100px;
+}
+.landingSubText {
+	color:#fff;
+	font-size:30px;
+}
 
 
 @media screen and (max-width: 600px) {
-
+		.landingTitle{
+			font-size: 130%;
+		}
+		.landingSubText {
+			font-size: 50%;
+		}
+		
 }
