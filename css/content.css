@@ -8,13 +8,16 @@
 	background-image: url(../img/home_mc.png);
 	background-position: center;
     background-repeat: no-repeat;
+	background-size: cover;
+	height:100vh;
 }
 #img .text{
-	position: absolute;
-	text-align:center;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 25%;
+    right: 25%;
+    bottom: 50%;
 }
 .row {
 	display: flex;
