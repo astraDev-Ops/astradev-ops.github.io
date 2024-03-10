@@ -16,7 +16,7 @@ body{
 	font-size: 25px;
 	border-radius:5px;
 }
-.nav a.active {
+.nav .active {
 	background-color: #4AB5B1;
 	color: white;
 }

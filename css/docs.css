@@ -1,0 +1,103 @@
+.content{
+	border-radius: 10px;
+	padding: 20px;
+	margin:5px;
+	display: block;
+	background-color: #343434;
+}
+body{
+	color:#fff;
+}
+.imageLeft{
+}
+.imageRight{
+}
+h1{
+	font-size: 70px;
+    text-decoration-color: #5f8989;
+    text-decoration-line: underline;
+}
+h2{
+	font-size: 50px;
+}
+h3{
+	font-size: 30px;
+}
+p {
+	font-size: 20px;
+}
+.a{
+	color: #62b3f5;
+	text-decoration: none;
+}
+.a:visited{
+	color:#728ba0;
+}
+.code{
+	font-size: 20px;
+	background-color:#141414;
+	padding:5px;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    line-height:22px;
+    word-break: break-word;
+    padding: 5px;
+}
+tr:nth-child(even) {
+  background-color: #121212;
+}
+tr{
+    background-color: #202020;
+}
+td{
+    padding: 5px;
+}
+th{
+    text-align: left;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.webRoute{
+    font-size: 14px;
+    color: white;
+    text-transform: uppercase;
+    margin-right: 10px;
+    padding: 4px 8px 1.5px;
+    border-radius: 12px;
+    font-family: "Calistoga", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.POST{
+    background-color: #9e7307;
+    border: 2px solid #000000;
+}
+.GET{
+    background-color: #185192;
+    border: 2px solid black;
+}
+.PATCH{
+    background-color: #209258;
+    border: 2px solid #000000;
+}
+.DELETE{
+    background-color: #932626;
+    border: 2px solid #000000;
+}
+.red{
+    background-color: #932626;
+    border: 2px solid #de8181;
+}
+.orange{
+    background-color: #6a4603;
+    border: 2px solid orange;
+}
+.additionalInfo{
+    padding: 5px;
+    color: white;
+    margin-top: 10px;
+}
