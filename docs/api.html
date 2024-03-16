@@ -2,194 +2,434 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	
 	<title>astraDev</title>
-	<base href="../">
-	<link href="css/menu.css" rel="stylesheet" />
-	<link href="css/docs.css" rel="stylesheet" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="../css/docs.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital@0;1&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="nav" id="nav">
-	<a href="/">Home</a>
-	<a href="/about">About Us</a>
-	<div class="dropdown active">
-		<button class="dropbtn">Docs <i class="fa fa-caret-down"></i></button>
-		<div class="dropdown-content">
-			<a href="docs/api" class="active">API</a>
-			<a href="docs/jarvis">Jarvis Bot</a>
-		</div>
-	</div>	
-	<div class="dropdown">
-		<button class="dropbtn">Logins <i class="fa fa-caret-down"></i></button>
-		<div class="dropdown-content">
-			<a href="https://jarvis.astradev.xyz">Jarvis Web</a>
-		</div>
+<div class="sidebar" id="sidebar">
+	<h3 style="text-align:center;color:#b1b1b1;">Docs: API</h3>
+	<hr class="hr">
+	<a href="/"><i class="fa-solid fa-arrow-left"></i> Return Home</a>
+	<a>
+		<input id="search" list="datalist" type="search" autocomplete="off" placeholder="Search by title ..." style="margin:auto;border: 1px solid #666666;border-radius:10px;padding: 16px;padding-left: 8px;background-color: #010a24;color: #b1b1b1;">
+		<datalist id="datalist"></datalist>
+	</a>
+	<hr class="hr">
+	<a href="#info">Info</a>
+	<a href="#started">Getting Started</a>
+	<a class="dropdown">Objects <i class="fa-solid fa-caret-down"></i></a>
+	<div class="dropdown-content">
+		<a href="#apiObject" class="dropdown-a">API</a>
+		<a href="#fileObject" class="dropdown-a">File</a>
+		<a href="#roleObject" class="dropdown-a">Roles</a>
+		<a href="#urlObject" class="dropdown-a">Url</a>
 	</div>
-	<div class="dropdown">
-		<button class="dropbtn">Important Docs <i class="fa fa-caret-down"></i></button>
-		<div class="dropdown-content">
-			<a href="/policy">Privacy Policy</a>
-			<a href="/tos">Terms of Usage</a>
-		</div>
-	</div>	
-	<a class="icon" id="menu"><i class="fa fa-bars"></i></a>
+	<a class="dropdown">API Endpoints <i class="fa-solid fa-caret-down"></i></a>
+	<div class="dropdown-content">
+		<a href="#get-api" class="dropdown-a">Get Status</a>
+		<a href="#post-api" class="dropdown-a">Create User</a>
+		<a href="#patch-api" class="dropdown-a">Reset Key</a>
+		<a href="#patch-api-status" class="dropdown-a">Modify Status</a>
+		<a href="#delete-api" class="dropdown-a">Ban User</a>
+	</div>
+	<a class="dropdown">File Endpoints <i class="fa-solid fa-caret-down"></i></a>
+	<div class="dropdown-content">
+		<a href="#get-file" class="dropdown-a">Get File</a>
+	</div>
+	<a class="dropdown">Url Endpoints <i class="fa-solid fa-caret-down"></i></a>
+	<div class="dropdown-content">
+		<a href="#get-file" class="dropdown-a">Get Url</a>
+		<a href="#post-url" class="dropdown-a">Add Url</a>
+	</div>
+	<a></a>
+	<a></a>
 </div>
 
-<div class="content">
+<div class="content" id="content">
 	<h1>API Documentation</h1>
-	<p>This page is about the API server hosted on: <code class="code">https://api.astradev.xyz</code>. This service is provided free of charge however some restriction apply. The database lists are maintained through community support and active reports from various providers to keep our lists as accurate as possible, however, there as you can guess this list will never be as up to date as your locally installed antivirus software.</p>
-	<p>If you do find any issues that are potential security vulnerabilities please report them on <a class="a" href="https://discord.gg/NfQ5u7N">our discord server.</a>  All other general issues can be reported on our dedicated <a class="a" href="https://github.com/astraDev-Ops/astraDev">Github repository.</a></p> 
+	<div class="textContent">
+		<h2 id="info">Info<a class="copy"> <sup><i class="fa-solid fa-clipboard" style="font-size: xx-large;"></i></sup></a></h2>
+		<p>This page is about the RESTful API server hosted at <code class="code">https://api.astradev.xyz</code>
+		which is provided free of charge however usage is subjected to per-IP rate limits. The database lists are maintained through
+			community support. Some endpoints can be used to detect some malicious binaries however <b>they do not replace your own
+				locally installed antivirus. Please do not use these endpoints in your own antivirus solutions as they will never be accurate
+				or as up to date as commercial AV software!</b></p>
+	</div>
+	<div class="textContent">
+		<h2 id="started">Getting Started<a class="copy"> <sup><i class="fa-solid fa-clipboard" style="font-size: xx-large;"></i></sup></a></h2>
+		<p>All requests to the API are done using HTTP requests. Feel free to use any server-side coding language.
+			All endpoints require authentication and authorisation. Authorisation information can be found under the <a class="a" href="#roles">ROLE</a> object.
+		</p>
+		<details>
+			<summary>Creating an account:</summary>
+			<p style="padding:25px;">In order to access the API endpoints please ensure you have a valid API key from <a class="a" href="https://jarvis.astradev.xyz">here.</a>
+			</p>
+		</details>
+		<details>
+			<summary>Headers</summary>
+			<div style="padding:25px;">
+				<table>
+					<tr>
+						<th>Header name</th>
+						<th>Required Value</th>
+						<th>Notes</th>
+					</tr>
+					<tr>
+						<td>x-auth-key</td>
+						<td>YOUR API KEY</td>
+						<td>This is a required header. Please ensure you are sending this in all requests.</td>
+					</tr>
+					<tr>
+						<td>x-audit</td>
+						<td>A 10+ CHAR STRING</td>
+						<td>This is a required header for some endpoints. Endpoints requiring this header will be marked accordingly.</td>
+					</tr>
+				</table>
+			</div>
+		</details>
+		<details>
+			<summary>API Structure</summary>
+			<div style="padding:25px;">
+				<p>Base URL: <code class="code">https://api.astradev.xyz</code></p>
+				<p>Each request needs to be sent to a valid versioned endpoint. Some endpoints may not be available on older versions so please ensure you check the endpoint documentation for any limitations that might be present per version.</p>
+				<p>The endpoint is marked in the URL as <code class="code">/v{VERSION NUMBER}</code></p>
+				<table>
+					<tr>
+						<th>VERSION NUMBER</th>
+						<th>Status</th>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>Removed (4th March 2024)</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>Active</td>
+					</tr>
+				</table>
+			</div>
+		</details>
+	</div>
 
-	<hr>
-	<div id="get-api">
-		<h3>Get API Status</h3>
-		<div class="spanMargin">
-			<span class="webRoute GET">GET</span>
-			<span>/api?query={ID}</span>
-		</div>
-		<p>Get the API status of a user account.</p>
+	<h1>Objects: </h1>
+	<div class="textContent">
+		<h2 id="apiObject">API<a class="copy"> <sup><i class="fa-solid fa-clipboard" style="font-size: xx-large;"></i></sup></a></h2>
+		<p>Represents an API user</p>
+		<table>
+			<tr>
+				<th>Field</th>
+				<th>Data Type</th>
+				<th>Notes</th>
+			</tr>
+			<tr>
+				<td>id</td>
+				<td>String</td>
+				<td>A non-null String with the API key user ID.</td>
+			</tr>
+			<tr>
+				<td>active</td>
+				<td>Boolean</td>
+				<td>API user account active status.</td>
+			</tr>
+			<tr>
+				<td>banned</td>
+				<td>Boolean</td>
+				<td>API user account ban status.</td>
+			</tr>
+		</table>
+	</div>
+	<div class="textContent">
+		<h2 id="FileObject">FILE<a class="copy"> <sup><i class="fa-solid fa-clipboard" style="font-size: xx-large;"></i></sup></a></h2>
+		<p>Represents a File object</p>
+		<table>
+			<tr>
+				<th>Field</th>
+				<th>Data Type</th>
+				<th>Notes</th>
+			</tr>
+			<tr>
+				<td>hash</td>
+				<td>String</td>
+				<td>A non-null 64bit String with the file's SHA-256 hash.</td>
+			</tr>
+			<tr>
+				<td>fileType</td>
+				<td>String</td>
+				<td>A nullable String with the file MIME type (if known).</td>
+			</tr>
+			<tr>
+				<td>malwareType</td>
+				<td>String</td>
+				<td>A nullable String with the malware class (if malicious AND KNOWN).</td>
+			</tr>
+			<tr>
+				<td>detectionDate</td>
+				<td>Long</td>
+				<td>A non-null long with the Epoch Millisecond of when this entry was either first detected or added (which ever is first).</td>
+			</tr>
+		</table>
+	</div>
+	<div class="textContent">
+		<h2 id="roleObject">ROLE<a class="copy"> <sup><i class="fa-solid fa-clipboard" style="font-size: xx-large;"></i></sup></a></h2>
+		<p>Represents a Role object. This is not returned to the user at any time!</p>
+		<p>Roles are incrementally hierarchy based meaning you can access endpoints of the roles below you. At no point should an endpoint be
+		accessible without an authorisation header! Every API account is given a role on creation and each request is checked to ensure you firstly
+		have a valid API key, on success your Role is checked against the endpoint Role to ensure you have authorisation to access that endpoint.</p>
+		<table>
+			<tr>
+				<th>Role Name</th>
+				<th>Notes</th>
+			</tr>
+			<tr>
+				<td>NONE</td>
+				<td>This role indicates no authorisation header is required. No endpoint should have this and is considered a bug.</td>
+			</tr>
+			<tr>
+				<td>USER</td>
+				<td>The default role that almost everyone will have.</td>
+			</tr>
+			<tr>
+				<td>SERVICE</td>
+				<td>Any approved service that can access potentially damaging endpoints (most POST/PATCH/DELETE requests).</td>
+			</tr>
+			<tr>
+				<td>ADMIN</td>
+				<td>The god role (can access any and all endpoints).</td>
+			</tr>
+		</table>
+	</div>
+	<div class="textContent">
+		<h2 id="UrlObject">URL<a class="copy"> <sup><i class="fa-solid fa-clipboard" style="font-size: xx-large;"></i></sup></a></h2>
+		<p>Represents a Url object</p>
+		<table>
+			<tr>
+				<th>Field</th>
+				<th>Data Type</th>
+				<th>Notes</th>
+			</tr>
+			<tr>
+				<td>url</td>
+				<td>String</td>
+				<td>A non-null String containing the URL's domain (with any subdomains).</td>
+			</tr>
+			<tr>
+				<td>reason</td>
+				<td>String</td>
+				<td>A non-null String with the URL's blacklisting reason.</td>
+			</tr>
+			<tr>
+				<td>detectionDate</td>
+				<td>Long</td>
+				<td>A non-null long with the Epoch Millisecond of when this entry was added.</td>
+			</tr>
+		</table>
+	</div>
+
+	<h1>Endpoints:</h1>
+	<div class="textContent">
+		<h2 id="API">API<a class="copy"> <sup><i class="fa-solid fa-clipboard" style="font-size: xx-large;"></i></sup></a></h2>
+		<div class="marginLow" id="get-api">
+			<div class="spanMargin">
+				<span class="webRoute GET">GET</span>
+				<span>/api?query={ID}</span>
+			</div>
 			<p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
-		<p>Returns:</p>
-		<table>
-			<tr>
-				<th>Response Message</th>
-				<th>HTTP status</th>
-			</tr>
-			<tr>
-				<td>No Account</td>
-				<td>200</td>
-			</tr>
-			<tr>
-				<td>Active</td>
-				<td>200</td>
-			</tr>
-			<tr>
-				<td>Disabled</td>
-				<td>200</td>
-			</tr>
-			<tr>
-				<td>Banned</td>
-				<td>200</td>
-			</tr>
-		</table>
-	</div>
-	<div id="post-api">
-		<h3>Create API Account</h3>
-		<div class="spanMargin">
-			<span class="webRoute POST">POST</span>
-			<span>/api</span>
+			<p>Get the API status of a user account.</p>
+			<details>
+				<summary>
+					This endpoint returns:
+				</summary>
+				<div style="padding:25px;">
+					<table>
+						<tr>
+							<th>Response Message</th>
+							<th>HTTP status</th>
+						</tr>
+						<tr>
+							<td>No Account</td>
+							<td>200</td>
+						</tr>
+						<tr>
+							<td>Active</td>
+							<td>200</td>
+						</tr>
+						<tr>
+							<td>Disabled</td>
+							<td>200</td>
+						</tr>
+						<tr>
+							<td>Banned</td>
+							<td>200</td>
+						</tr>
+					</table>
+				</div>
+			</details>
 		</div>
-		<p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
-		<p>Create a new API user account.</p>
-		<p>JSON payload:</p>
-		<table>
-			<tr>
-				<th>Field</th>
-				<th>Data Type</th>
-				<th>Description</th>
-			</tr>
-			<tr>
-				<td>data</td>
-				<td>String</td>
-				<td>The user ID as a string</td>
-			</tr>
-		</table>
-		<p>Returns a 200 on successful creation or a 204 if the user already exists</p>
-	</div>
-	<div id="patch-api">
-		<h3>Reset API Key</h3>
-		<div class="spanMargin">
-			<span class="webRoute PATCH">PATCH</span>
-			<span>/api</span>
+		<div class="marginLow" id="post-api">
+			<div class="spanMargin">
+				<span class="webRoute POST">POST</span>
+				<span>/api</span>
+			</div>
+			<p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
+			<p>Create a new API user account.</p>
+			<details>
+				<summary>JSON payload:</summary>
+				<div style="padding:25px;">
+					<table>
+						<tr>
+							<th>Field</th>
+							<th>Data Type</th>
+							<th>Description</th>
+						</tr>
+						<tr>
+							<td>data</td>
+							<td>String</td>
+							<td>The user ID as a string</td>
+						</tr>
+					</table>
+				</div>
+			</details>
+			<p>Returns a 200 on successful creation or a 204 if the user already exists</p>
 		</div>
-		<p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
-		<p>Reset and immediately invalid the old API key for an API user.</p>
-		<p>JSON payload:</p>
-		<table>
-			<tr>
-				<th>Field</th>
-				<th>Data Type</th>
-				<th>Description</th>
-			</tr>
-			<tr>
-				<td>data</td>
-				<td>String</td>
-				<td>The user ID as a string</td>
-			</tr>
-		</table>
-		<p>Returns an API key object</p>
-	</div>
-	<div id="patch-api-status">
-		<h3>Toggle API Status</h3>
-		<div class="spanMargin">
-			<span class="webRoute PATCH">PATCH</span>
-			<span>/api</span>
+		<div class="marginLow" id="patch-api">
+			<div class="spanMargin">
+				<span class="webRoute PATCH">PATCH</span>
+				<span>/api</span>
+			</div>
+			<p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
+			<p>Reset and immediately invalid the old API key for an API user.</p>
+			<details>
+				<summary>JSON payload:</summary>
+				<div style="padding:25px;">
+					<table>
+						<tr>
+							<th>Field</th>
+							<th>Data Type</th>
+							<th>Description</th>
+						</tr>
+						<tr>
+							<td>data</td>
+							<td>String</td>
+							<td>The user ID as a string</td>
+						</tr>
+					</table>
+				</div>
+			</details>
+			<p>Returns an API key object</p>
 		</div>
-		<p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
-		<p>Modify the active status for an API user. THIS IS NOT THE SAME AS BANNING.</p>
-		<p>JSON payload:</p>
-		<table>
-			<tr>
-				<th>Field</th>
-				<th>Data Type</th>
-				<th>Description</th>
-			</tr>
-			<tr>
-				<td>data</td>
-				<td>String</td>
-				<td>The user ID as a string</td>
-			</tr>
-		</table>
-		<p>Returns a JSON message as {"message":BOOL}. True = enabled, False = disabled.</p>
-	</div>
-	<div id="delete-api">
-		<h3>Ban API User</h3>
-		<div class="spanMargin">
-			<span class="webRoute DELETE">DELETE</span>
-			<span>/api</span>
+		<div class="marginLow" id="patch-api-status">
+			<div class="spanMargin">
+				<span class="webRoute PATCH">PATCH</span>
+				<span>/api/status</span>
+			</div>
+			<p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
+			<p>Modify the active status for an API user. THIS IS NOT THE SAME AS BANNING.</p>
+			<details>
+				<summary>JSON payload:</summary>
+				<div style="padding:25px;">
+					<table>
+						<tr>
+							<th>Field</th>
+							<th>Data Type</th>
+							<th>Description</th>
+						</tr>
+						<tr>
+							<td>data</td>
+							<td>String</td>
+							<td>The user ID as a string</td>
+						</tr>
+					</table>
+				</div>
+			</details>
+			<p>Returns a JSON message as {"message":BOOL}. True = enabled, False = disabled.</p>
 		</div>
-		<p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
-		<p class="additionalInfo orange">Requires an audit log header (x-audit) with a minimum char count of 20.</p>
-		<p>Bans an API user account permanently. There are no appeal processes available at this time.</p>
-		<p>JSON payload:</p>
-		<table>
-			<tr>
-				<th>Field</th>
-				<th>Data Type</th>
-				<th>Description</th>
-			</tr>
-			<tr>
-				<td>data</td>
-				<td>String</td>
-				<td>The user ID as a string</td>
-			</tr>
-		</table>
-		<p>Returns a 200 on successful ban or a 204 when already banned.</p>
-	</div>
-	<div id="get-file">
-		<h3>Get File</h3>
-		<div class="spanMargin">
-			<span class="webRoute GET">GET</span>
-			<span>/file?query={sha256}</span>
+		<div id="delete-api">
+			<div class="spanMargin">
+				<span class="webRoute DELETE">DELETE</span>
+				<span>/api</span>
+			</div>
+			<p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
+			<p class="additionalInfo orange">Requires an audit log header (x-audit) with a minimum char count of 20.</p>
+			<p>Bans an API user account permanently. There are no appeal processes available at this time.</p>
+			<details>
+			<summary>JSON payload:</summary>
+			<div style="padding:25px;">
+				<table>
+					<tr>
+						<th>Field</th>
+						<th>Data Type</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<td>data</td>
+						<td>String</td>
+						<td>The user ID as a string</td>
+					</tr>
+				</table>
+			</div>
+		</details>
+			<p>Returns a 200 on successful ban or a 204 when already banned.</p>
 		</div>
-		<p>Check a file's SHA256 hash with our database to see if a file <b>MIGHT</b> be malicious. THIS DOES NOT REPLACE ANTIVIRUS SOFTWARE.</p>
-		<p>Returns a FILE object.<p></p>
 	</div>
-	<div id="get-url">
-		<h3>Get URL</h3>
-		<div class="spanMargin">
-			<span class="webRoute GET">GET</span>
-			<span>/url?query={full-url-with-protocol}</span>
+		<div class="textContent">
+			<h2 id="File">File<a class="copy"> <sup><i class="fa-solid fa-clipboard" style="font-size: xx-large;"></i></sup></a></h2>
+			<div id="get-file">
+				<div class="spanMargin">
+					<span class="webRoute GET">GET</span>
+					<span>/file?query={sha256}</span>
+				</div>
+				<p>Check a file's SHA256 hash with our database to see if a file <b>MIGHT</b> be malicious. THIS DOES NOT REPLACE ANTIVIRUS SOFTWARE.</p>
+				<p>Returns a <a href="#fileObject" class="a">FILE</a> object.<p></p>
+			</div>
 		</div>
-		<p>Check a URL with our database to see if a url <b>MIGHT</b> be malicious. THIS DOES NOT REPLACE ANTIVIRUS SOFTWARE.</p>
-		<p>Returns a URL object.<p></p>
+	<div class="textContent">
+		<h2 id="Url">Url<a class="copy"> <sup><i class="fa-solid fa-clipboard" style="font-size: xx-large;"></i></sup></a></h2>
+		<div class="marginLow" id="get-url">
+			<div class="spanMargin">
+				<span class="webRoute GET">GET</span>
+				<span>/url?query={full-url-with-protocol}</span>
+			</div>
+			<p>Check a URL with our database to see if a URL <b>MIGHT</b> be malicious. THIS DOES NOT REPLACE ANTIVIRUS SOFTWARE.</p>
+			<p>Returns a <a href="urlObject" class="a">URL</a> object.<p></p>
+		</div>
+		<div id="post-url">
+			<div class="spanMargin">
+				<span class="webRoute POST">POST</span>
+				<span>/url</span>
+			</div>
+			<p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
+			<p class="additionalInfo orange">Requires an audit log header (x-audit) with a minimum char count of 20.</p>
+			<p>Creates a new URL resource</p>
+			<details>
+				<summary>JSON payload:</summary>
+				<div style="padding:25px;">
+					<table>
+						<tr>
+							<th>Field</th>
+							<th>Data Type</th>
+							<th>Description</th>
+						</tr>
+						<tr>
+							<td>data</td>
+							<td>String</td>
+							<td>The full URL with protocol</td>
+						</tr>
+					</table>
+				</div>
+			</details>
+			<p>JSON payload:</p>
+
+			<p>Returns a 204 on successful creation</p>
+		</div>
 	</div>
 </div>
 
-<script src="js/menu.js"></script>
+<script src="../js/docs.js"></script>
+<script src="../js/api.js"></script>
 </body>
 </html>
