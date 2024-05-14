@@ -21,79 +21,22 @@
 	<a href="about">About Us</a>
 	<a href="/">Home</a>
 </nav>
-<div id="sideNav" class="sidenav">
-	<div class="closebtn" id="closeNav">&times;</div>
-	<a href=""></a>
-	<a href="/">Home</a>
-	<a href="/about">About Us</a>
-	<a href="/docs">Docs</a>
+<div class="sidebar" id="sidebar">
+	<h3 style="text-align:center;color:#b1b1b1;">Docs: Home</h3>
+	<hr class="hr">
+	<a href="/"><i class="fa-solid fa-arrow-left"></i> Return Home</a>
+	<hr class="hr">
+	<a href="docs/api#info" class="dropdown">Docs</a>
+	<div>
+		<a href="docs/api#started" class="dropdown-a">API</a>
+		<a href="docs/jarvis#started" class="dropdown-a">Jarvis</a>
+	</div>
 </div>
 <div class="content" id="content">
 	<h1>Docs Home</h1>
 	<div class="textContent">
-		<h2 id="info">Info<a class="copy"> <sup><i class="fa-solid fa-clipboard" style="font-size: xx-large;"></i></sup></a></h2>
-		<p>This page is about the RESTful API server hosted at <code class="code">https://api.astradev.xyz</code>
-		which is provided free of charge however usage is subjected to per-IP rate limits. The database lists are maintained through
-			community support. Some endpoints can be used to detect some malicious binaries however <b>they do not replace your own
-				locally installed antivirus. Please do not use these endpoints in your own antivirus solutions as they will never be accurate
-				or as up to date as commercial AV software!</b></p>
+		<p>Welcome to the docs home page. Please use the links on the left to navigate around. </p>
 	</div>
-	<div class="textContent">
-		<h2 id="started">Getting Started<a class="copy"> <sup><i class="fa-solid fa-clipboard" style="font-size: xx-large;"></i></sup></a></h2>
-		<p>All requests to the API are done using HTTP requests. Feel free to use any server-side coding language.
-			All endpoints require authentication and authorisation. Authorisation information can be found under the <a class="a" href="#roles">ROLE</a> object.
-		</p>
-		<details>
-			<summary>Creating an account:</summary>
-			<p style="padding:25px;">In order to access the API endpoints please ensure you have a valid API key from <a class="a" href="https://jarvis.astradev.xyz">here.</a>
-			</p>
-		</details>
-		<details>
-			<summary>Headers</summary>
-			<div style="padding:25px;">
-				<table>
-					<tr>
-						<th>Header name</th>
-						<th>Required Value</th>
-						<th>Notes</th>
-					</tr>
-					<tr>
-						<td>x-auth-key</td>
-						<td>YOUR API KEY</td>
-						<td>This is a required header. Please ensure you are sending this in all requests.</td>
-					</tr>
-					<tr>
-						<td>x-audit</td>
-						<td>A 10+ CHAR STRING</td>
-						<td>This is a required header for some endpoints. Endpoints requiring this header will be marked accordingly.</td>
-					</tr>
-				</table>
-			</div>
-		</details>
-		<details>
-			<summary>API Structure</summary>
-			<div style="padding:25px;">
-				<p>Base URL: <code class="code">https://api.astradev.xyz</code></p>
-				<p>Each request needs to be sent to a valid versioned endpoint. Some endpoints may not be available on older versions so please ensure you check the endpoint documentation for any limitations that might be present per version.</p>
-				<p>The endpoint is marked in the URL as <code class="code">/v{VERSION NUMBER}</code></p>
-				<table>
-					<tr>
-						<th>VERSION NUMBER</th>
-						<th>Status</th>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>Removed (4th March 2024)</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Active</td>
-					</tr>
-				</table>
-			</div>
-		</details>
-	</div>
-
 </div>
 </body>
 </html>
