@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>astraDev</title>
+    <link href="../../css/docs.css" rel="stylesheet" />
+    <link href="../../css/fontawesome.css" rel="stylesheet" />
+    <link href="../../css/fonts.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="sidebar" id="sidebar">
+    <h3 style="text-align:center;color:#b1b1b1;">Docs: API</h3>
+    <hr class="hr">
+    <a href="/"><i class="fa-solid fa-arrow-left"></i> Return Home</a>
+    <a>
+        <input id="search" list="datalist" type="search" autocomplete="off" placeholder="Search by title ..." style="margin:auto;border: 1px solid #666666;border-radius:10px;padding: 16px;padding-left: 8px;background-color: #010a24;color: #b1b1b1;">
+        <datalist id="datalist"></datalist>
+    </a>
+    <hr class="hr">
+    <a class="dropdown">Info</a>
+    <div>
+        <a href="api" class="dropdown-a">Getting Started</a>
+    </div>
+    <a class="dropdown">Objects</a>
+    <div>
+        <a href="objects#api" class="dropdown-a">API</a>
+        <a href="objects#file" class="dropdown-a">File</a>
+        <a href="objects#roles" class="dropdown-a">Roles</a>
+        <a href="objects#url" class="dropdown-a">Url</a>
+    </div>
+    <a class="dropdown">API Endpoints</a>
+    <div>
+        <a href="#get-api" class="dropdown-a">Get Status</a>
+        <a href="#post-api" class="dropdown-a">Create User</a>
+        <a href="#patch-api" class="dropdown-a">Reset Key</a>
+        <a href="#patch-api-status" class="dropdown-a">Modify Status</a>
+        <a href="#delete-api" class="dropdown-a">Ban User</a>
+    </div>
+    <a class="dropdown">File Endpoints</a>
+    <div>
+        <a href="#get-file" class="dropdown-a">Get File</a>
+    </div>
+    <a class="dropdown">Url Endpoints</a>
+    <div>
+        <a href="#get-file" class="dropdown-a">Get Url</a>
+        <a href="#post-url" class="dropdown-a">Add Url</a>
+    </div>
+
+</div>
+
+<div class="content" id="content">
+    <h2>Objects: </h2>
+    <div class="textContent">
+        <h3 id="api">API</h3>
+        <p>Represents an API user</p>
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Data Type</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td>id</td>
+                <td>String</td>
+                <td>A non-null String with the API key user ID.</td>
+            </tr>
+            <tr>
+                <td>active</td>
+                <td>Boolean</td>
+                <td>API user account active status.</td>
+            </tr>
+            <tr>
+                <td>banned</td>
+                <td>Boolean</td>
+                <td>API user account ban status.</td>
+            </tr>
+        </table>
+    </div>
+    <div class="textContent">
+        <h3 id="file">FILE</h3>
+        <p>Represents a File object</p>
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Data Type</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td>hash</td>
+                <td>String</td>
+                <td>A non-null 64bit String with the file's SHA-256 hash.</td>
+            </tr>
+            <tr>
+                <td>fileType</td>
+                <td>String</td>
+                <td>A nullable String with the file MIME type (if known).</td>
+            </tr>
+            <tr>
+                <td>malwareType</td>
+                <td>String</td>
+                <td>A nullable String with the malware class (if malicious AND KNOWN).</td>
+            </tr>
+            <tr>
+                <td>detectionDate</td>
+                <td>Long</td>
+                <td>A non-null long with the Epoch Millisecond of when this entry was either first detected or added (which ever is first).</td>
+            </tr>
+        </table>
+    </div>
+    <div class="textContent">
+        <h3 id="role">ROLE</h3>
+        <p>Represents a Role object. This is not returned to the user at any time!</p>
+        <p>Roles are incrementally hierarchy based meaning you can access endpoints of the roles below you. At no point should an endpoint be
+            accessible without an authorisation header! Every API account is given a role on creation and each request is checked to ensure you firstly
+            have a valid API key, on success your Role is checked against the endpoint Role to ensure you have authorisation to access that endpoint.</p>
+        <table>
+            <tr>
+                <th>Role Name</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td>NONE</td>
+                <td>This role indicates no authorisation header is required. No endpoint should have this and is considered a bug.</td>
+            </tr>
+            <tr>
+                <td>USER</td>
+                <td>The default role that almost everyone will have.</td>
+            </tr>
+            <tr>
+                <td>SERVICE</td>
+                <td>Any approved service that can access potentially damaging endpoints (most POST/PATCH/DELETE requests).</td>
+            </tr>
+            <tr>
+                <td>ADMIN</td>
+                <td>The god role (can access any and all endpoints).</td>
+            </tr>
+        </table>
+    </div>
+    <div class="textContent">
+        <h3 id="url">URL</h3>
+        <p>Represents a Url object</p>
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Data Type</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td>url</td>
+                <td>String</td>
+                <td>A non-null String containing the URL's domain (with any subdomains).</td>
+            </tr>
+            <tr>
+                <td>reason</td>
+                <td>String</td>
+                <td>A non-null String with the URL's blacklisting reason.</td>
+            </tr>
+            <tr>
+                <td>detectionDate</td>
+                <td>Long</td>
+                <td>A non-null long with the Epoch Millisecond of when this entry was added.</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script src="../js/api.js"></script>
+</body>
+</html>

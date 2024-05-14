@@ -79,9 +79,6 @@ th{
     text-decoration: none;
     padding-left: 8px;
 }
-.dropdown-container {
-    display: none;
-}
 .dropdown-a {
     color: #8b8b8b !important;
     padding: 12px !important;

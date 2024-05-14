@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>astraDev</title>
+    <link href="../../css/docs.css" rel="stylesheet" />
+    <link href="../../css/fontawesome.css" rel="stylesheet" />
+    <link href="../../css/fonts.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="sidebar" id="sidebar">
+    <h3 style="text-align:center;color:#b1b1b1;">Docs: API</h3>
+    <hr class="hr">
+    <a href="/"><i class="fa-solid fa-arrow-left"></i> Return Home</a>
+    <hr class="hr">
+    <a class="dropdown">Info</a>
+    <div>
+        <a href="#started" class="dropdown-a">Getting Started</a>
+    </div>
+    <a class="dropdown">Objects</a>
+    <div>
+        <a href="objects.html#API" class="dropdown-a">API</a>
+        <a href="#fileObject" class="dropdown-a">File</a>
+        <a href="#roleObject" class="dropdown-a">Roles</a>
+        <a href="#urlObject" class="dropdown-a">Url</a>
+    </div>
+    <a class="dropdown">API Endpoints</a>
+    <div>
+        <a href="#get-api" class="dropdown-a">Get Status</a>
+        <a href="#post-api" class="dropdown-a">Create User</a>
+        <a href="#patch-api" class="dropdown-a">Reset Key</a>
+        <a href="#patch-api-status" class="dropdown-a">Modify Status</a>
+        <a href="#delete-api" class="dropdown-a">Ban User</a>
+    </div>
+    <a class="dropdown">File Endpoints</a>
+    <div>
+        <a href="#get-file" class="dropdown-a">Get File</a>
+    </div>
+    <a class="dropdown">Url Endpoints</a>
+    <div>
+        <a href="#get-file" class="dropdown-a">Get Url</a>
+        <a href="#post-url" class="dropdown-a">Add Url</a>
+    </div>
+</div>
+
+<div class="content" id="content">
+    <h2>Endpoints:</h2>
+    <div class="textContent">
+        <h3 id="API">API</h3>
+        <div class="marginLow" id="get-api">
+            <div class="spanMargin">
+                <span class="webRoute GET">GET</span>
+                <span>/api?query={ID}</span>
+            </div>
+            <p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
+            <p>Get the API status of a user account.</p>
+            <details>
+                <summary>
+                    This endpoint returns:
+                </summary>
+                <div style="padding:25px;">
+                    <table>
+                        <tr>
+                            <th>Response Message</th>
+                            <th>HTTP status</th>
+                        </tr>
+                        <tr>
+                            <td>No Account</td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <td>Active</td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <td>Disabled</td>
+                            <td>200</td>
+                        </tr>
+                        <tr>
+                            <td>Banned</td>
+                            <td>200</td>
+                        </tr>
+                    </table>
+                </div>
+            </details>
+        </div>
+        <div class="marginLow" id="post-api">
+            <div class="spanMargin">
+                <span class="webRoute POST">POST</span>
+                <span>/api</span>
+            </div>
+            <p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
+            <p>Create a new API user account.</p>
+            <details>
+                <summary>JSON payload:</summary>
+                <div style="padding:25px;">
+                    <table>
+                        <tr>
+                            <th>Field</th>
+                            <th>Data Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>data</td>
+                            <td>String</td>
+                            <td>The user ID as a string</td>
+                        </tr>
+                    </table>
+                </div>
+            </details>
+            <p>Returns a 200 on successful creation or a 204 if the user already exists</p>
+        </div>
+        <div class="marginLow" id="patch-api">
+            <div class="spanMargin">
+                <span class="webRoute PATCH">PATCH</span>
+                <span>/api</span>
+            </div>
+            <p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
+            <p>Reset and immediately invalid the old API key for an API user.</p>
+            <details>
+                <summary>JSON payload:</summary>
+                <div style="padding:25px;">
+                    <table>
+                        <tr>
+                            <th>Field</th>
+                            <th>Data Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>data</td>
+                            <td>String</td>
+                            <td>The user ID as a string</td>
+                        </tr>
+                    </table>
+                </div>
+            </details>
+            <p>Returns an API key object</p>
+        </div>
+        <div class="marginLow" id="patch-api-status">
+            <div class="spanMargin">
+                <span class="webRoute PATCH">PATCH</span>
+                <span>/api/status</span>
+            </div>
+            <p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
+            <p>Modify the active status for an API user. THIS IS NOT THE SAME AS BANNING.</p>
+            <details>
+                <summary>JSON payload:</summary>
+                <div style="padding:25px;">
+                    <table>
+                        <tr>
+                            <th>Field</th>
+                            <th>Data Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>data</td>
+                            <td>String</td>
+                            <td>The user ID as a string</td>
+                        </tr>
+                    </table>
+                </div>
+            </details>
+            <p>Returns a JSON message as {"message":BOOL}. True = enabled, False = disabled.</p>
+        </div>
+        <div id="delete-api">
+            <div class="spanMargin">
+                <span class="webRoute DELETE">DELETE</span>
+                <span>/api</span>
+            </div>
+            <p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
+            <p class="additionalInfo orange">Requires an audit log header (x-audit) with a minimum char count of 20.</p>
+            <p>Bans an API user account permanently. There are no appeal processes available at this time.</p>
+            <details>
+                <summary>JSON payload:</summary>
+                <div style="padding:25px;">
+                    <table>
+                        <tr>
+                            <th>Field</th>
+                            <th>Data Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>data</td>
+                            <td>String</td>
+                            <td>The user ID as a string</td>
+                        </tr>
+                    </table>
+                </div>
+            </details>
+            <p>Returns a 200 on successful ban or a 204 when already banned.</p>
+        </div>
+    </div>
+    <div class="textContent">
+        <h3 id="File">File</h3>
+        <div id="get-file">
+            <div class="spanMargin">
+                <span class="webRoute GET">GET</span>
+                <span>/file?query={sha256}</span>
+            </div>
+            <p>Check a file's SHA256 hash with our database to see if a file <b>MIGHT</b> be malicious. THIS DOES NOT REPLACE ANTIVIRUS SOFTWARE.</p>
+            <p>Returns a <a href="#fileObject" class="a">FILE</a> object.<p></p>
+        </div>
+    </div>
+    <div class="textContent">
+        <h3 id="Url">Url</h3>
+        <div class="marginLow" id="get-url">
+            <div class="spanMargin">
+                <span class="webRoute GET">GET</span>
+                <span>/url?query={full-url-with-protocol}</span>
+            </div>
+            <p>Check a URL with our database to see if a URL <b>MIGHT</b> be malicious. THIS DOES NOT REPLACE ANTIVIRUS SOFTWARE.</p>
+            <p>Returns a <a href="urlObject" class="a">URL</a> object.<p></p>
+        </div>
+        <div id="post-url">
+            <div class="spanMargin">
+                <span class="webRoute POST">POST</span>
+                <span>/url</span>
+            </div>
+            <p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
+            <p class="additionalInfo orange">Requires an audit log header (x-audit) with a minimum char count of 20.</p>
+            <p>Creates a new URL resource</p>
+            <details>
+                <summary>JSON payload:</summary>
+                <div style="padding:25px;">
+                    <table>
+                        <tr>
+                            <th>Field</th>
+                            <th>Data Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>data</td>
+                            <td>String</td>
+                            <td>The full URL with protocol.</td>
+                        </tr>
+                    </table>
+                </div>
+            </details>
+            <p>Returns a 204 on successful creation.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
