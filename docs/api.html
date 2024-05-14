@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>astraDev</title>
+    <title>astraDev - API</title>
     <base href="/"/>
     <link href="css/docs.css" rel="stylesheet" />
     <link href="css/fontawesome.css" rel="stylesheet" />
@@ -24,7 +24,6 @@
     </div>
     <a class="dropdown">Objects</a>
     <div>
-        <a href="docs/api/objects#api" class="dropdown-a">API</a>
         <a href="docs/api/objects#file" class="dropdown-a">File</a>
         <a href="docs/api/objects#roles" class="dropdown-a">Roles</a>
         <a href="docs/api/objects#url" class="dropdown-a">Url</a>
@@ -34,20 +33,21 @@
         <a href="docs/api/endpoints#get-api" class="dropdown-a">Get Status</a>
         <a href="docs/api/endpoints#post-api" class="dropdown-a">Create User</a>
         <a href="docs/api/endpoints#patch-api" class="dropdown-a">Reset Key</a>
-        <a href="docs/api/endpoints#patch-api" class="dropdown-a">Modify Status</a>
+        <a href="docs/api/endpoints#delete-api" class="dropdown-a">Modify Status</a>
         <a href="docs/api/endpoints#delete-api" class="dropdown-a">Ban User</a>
     </div>
     <a class="dropdown">File Endpoints</a>
     <div>
         <a href="docs/api/endpoints#get-file" class="dropdown-a">Get File</a>
+        <a href="docs/api/endpoints#patch-file" class="dropdown-a">Modify File</a>
     </div>
     <a class="dropdown">Url Endpoints</a>
     <div>
         <a href="docs/api/endpoints#get-url" class="dropdown-a">Get Url</a>
         <a href="docs/api/endpoints#post-url" class="dropdown-a">Add Url</a>
+        <a href="docs/api/endpoints#patch-url" class="dropdown-a">Modify Url</a>
     </div>
 </div>
-
 <div class="content" id="content">
     <h1>API Documentation</h1>
     <div class="textContent">
@@ -61,11 +61,11 @@
     <div class="textContent">
         <h2>Getting Started</h2>
         <p>All requests to the API are done using HTTP requests. Feel free to use any server-side coding language.
-            All endpoints require authentication and authorisation. Authorisation information can be found under the <a class="a" href="#roles">ROLE</a> object.
+            All endpoints require authentication and authorisation. Authorisation information can be found under <a class="a" href="/docs/api/objects#roles">Roles</a>.
         </p>
         <details>
             <summary>Creating an account:</summary>
-            <p style="padding:25px;">In order to access the API endpoints please ensure you have a valid API key from <a class="a" href="https://jarvis.astradev.xyz">here.</a>
+            <p style="padding:25px;">In order to access the API endpoints please ensure you have a valid API key from <a class="a" href="https://astralbot.astradev.xyz">here.</a>
             </p>
         </details>
         <details>
@@ -83,7 +83,7 @@
                         <td>This is a required header. Please ensure you are sending this in all requests.</td>
                     </tr>
                     <tr>
-                        <td>x-audit</td>
+                        <td>x-audit-reason</td>
                         <td>A 10+ CHAR STRING</td>
                         <td>This is a required header for some endpoints. Endpoints requiring this header will be marked accordingly.</td>
                     </tr>
