@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>astraDev</title>
+    <title>astraDev - API</title>
     <base href="/"/>
     <link href="css/docs.css" rel="stylesheet" />
     <link href="css/fontawesome.css" rel="stylesheet" />
@@ -24,7 +24,6 @@
     </div>
     <a class="dropdown">Objects</a>
     <div>
-        <a href="docs/api/objects#api" class="dropdown-a">API</a>
         <a href="docs/api/objects#file" class="dropdown-a">File</a>
         <a href="docs/api/objects#roles" class="dropdown-a">Roles</a>
         <a href="docs/api/objects#url" class="dropdown-a">Url</a>
@@ -51,32 +50,6 @@
 <div class="content" id="content">
     <h2>Objects: </h2>
     <div class="textContent">
-        <h3 id="api">API</h3>
-        <p>Represents an API user</p>
-        <table>
-            <tr>
-                <th>Field</th>
-                <th>Data Type</th>
-                <th>Notes</th>
-            </tr>
-            <tr>
-                <td>id</td>
-                <td>String</td>
-                <td>A non-null String with the API key user ID.</td>
-            </tr>
-            <tr>
-                <td>active</td>
-                <td>Boolean</td>
-                <td>API user account active status.</td>
-            </tr>
-            <tr>
-                <td>banned</td>
-                <td>Boolean</td>
-                <td>API user account ban status.</td>
-            </tr>
-        </table>
-    </div>
-    <div class="textContent">
         <h3 id="file">FILE</h3>
         <p>Represents a File object</p>
         <table>
@@ -86,53 +59,75 @@
                 <th>Notes</th>
             </tr>
             <tr>
-                <td>hash</td>
-                <td>String</td>
-                <td>A non-null 64bit String with the file's SHA-256 hash.</td>
+                <td>id</td>
+                <td>Long</td>
+                <td>The ID of the file.</td>
             </tr>
             <tr>
-                <td>fileType</td>
+                <td>sha256</td>
+                <td>String</td>
+                <td>A non-null 64 bit hex String with the file's sha256 hash.</td>
+            </tr>
+            <tr>
+                <td>sha3_384</td>
+                <td>String</td>
+                <td>A nullable String with the file's sha3_384 hash.</td>
+            </tr>
+            <tr>
+                <td>classification</td>
+                <td>String</td>
+                <td>A nullable String with the malware class (NULL IF POTENTIALLY NOT MALICIOUS).</td>
+            </tr>
+            <tr>
+                <td>mime_type</td>
                 <td>String</td>
                 <td>A nullable String with the file MIME type (if known).</td>
             </tr>
             <tr>
-                <td>malwareType</td>
-                <td>String</td>
-                <td>A nullable String with the malware class (if malicious AND KNOWN).</td>
+                <td>addition_date</td>
+                <td>Long</td>
+                <td>A non-null long with the Epoch Millisecond of when this entry was added to the database.</td>
             </tr>
             <tr>
-                <td>detectionDate</td>
+                <td>detection_date</td>
                 <td>Long</td>
-                <td>A non-null long with the Epoch Millisecond of when this entry was either first detected or added (which ever is first).</td>
+                <td>A non-null long with the Epoch Millisecond of when this entry was either first detected in the wild (if known) or the addition date.</td>
+            </tr>
+            <tr>
+                <td>sample_available</td>
+                <td>Boolean</td>
+                <td>A non-null Boolean if there is a copy of the file locally.</td>
             </tr>
         </table>
     </div>
     <div class="textContent">
         <h3 id="role">ROLE</h3>
         <p>Represents a Role object. This is not returned to the user at any time!</p>
-        <p>Roles are incrementally hierarchy based meaning you can access endpoints of the roles below you. At no point should an endpoint be
-            accessible without an authorisation header! Every API account is given a role on creation and each request is checked to ensure you firstly
-            have a valid API key, on success your Role is checked against the endpoint Role to ensure you have authorisation to access that endpoint.</p>
+        <p>Roles are just permission bits (we currently use u16 for the nerds out there wondering). Each bit is either toggled on or off.</p>
         <table>
             <tr>
                 <th>Role Name</th>
                 <th>Notes</th>
             </tr>
             <tr>
-                <td>NONE</td>
-                <td>This role indicates no authorisation header is required. No endpoint should have this and is considered a bug.</td>
-            </tr>
-            <tr>
                 <td>USER</td>
-                <td>The default role that almost everyone will have.</td>
+                <td>The default role that everyone will have.</td>
             </tr>
             <tr>
-                <td>SERVICE</td>
-                <td>Any approved service that can access potentially damaging endpoints (most POST/PATCH/DELETE requests).</td>
+                <td>API_ACCESS</td>
+                <td>The role to access the API endpoints (do not bother requesting for these)</td>
             </tr>
             <tr>
-                <td>ADMIN</td>
-                <td>The god role (can access any and all endpoints).</td>
+                <td>ARRAY_ACCESS</td>
+                <td>To access any endpoints that return an array</td>
+            </tr>
+            <tr>
+                <td>MANAGE_FILE</td>
+                <td>To access POST, PATCH & DELETE file endpoints </td>
+            </tr>
+            <tr>
+                <td>MANAGE_URL</td>
+                <td>To access POST, PATCH & DELETE url endpoints </td>
             </tr>
         </table>
     </div>
@@ -146,6 +141,11 @@
                 <th>Notes</th>
             </tr>
             <tr>
+                <td>id</td>
+                <td>Long</td>
+                <td>The ID of the url</td>
+            </tr>
+            <tr>
                 <td>url</td>
                 <td>String</td>
                 <td>A non-null String containing the URL's domain (with any subdomains).</td>
@@ -156,9 +156,9 @@
                 <td>A non-null String with the URL's blacklisting reason.</td>
             </tr>
             <tr>
-                <td>detectionDate</td>
+                <td>addition_date</td>
                 <td>Long</td>
-                <td>A non-null long with the Epoch Millisecond of when this entry was added.</td>
+                <td>A non-null Long with the Epoch Millisecond of when this entry was added.</td>
             </tr>
         </table>
     </div>
