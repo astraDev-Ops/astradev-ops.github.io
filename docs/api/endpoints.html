@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>astraDev</title>
-    <link href="../../css/docs.css" rel="stylesheet" />
-    <link href="../../css/fontawesome.css" rel="stylesheet" />
-    <link href="../../css/fonts.css" rel="stylesheet" />
+    <title>astraDev - API</title>
+    <base href="/"/>
+    <link href="css/docs.css" rel="stylesheet" />
+    <link href="css/fontawesome.css" rel="stylesheet" />
+    <link href="css/fonts.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
@@ -23,7 +24,6 @@
     </div>
     <a class="dropdown">Objects</a>
     <div>
-        <a href="docs/api/objects#api" class="dropdown-a">API</a>
         <a href="docs/api/objects#file" class="dropdown-a">File</a>
         <a href="docs/api/objects#roles" class="dropdown-a">Roles</a>
         <a href="docs/api/objects#url" class="dropdown-a">Url</a>
@@ -46,7 +46,6 @@
         <a href="docs/api/endpoints#post-url" class="dropdown-a">Add Url</a>
     </div>
 </div>
-
 <div class="content" id="content">
     <h2>Endpoints:</h2>
     <div class="textContent">
@@ -56,33 +55,28 @@
                 <span class="webRoute GET">GET</span>
                 <span>/api?query={ID}</span>
             </div>
-            <p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
+            <p class="additionalInfo red">Requires an elevated role of <b>API_ACCESS</b></p>
             <p>Get the API status of a user account.</p>
             <details>
                 <summary>
-                    This endpoint returns:
+                    This endpoint returns 200 status with the following message:
                 </summary>
                 <div style="padding:25px;">
                     <table>
                         <tr>
                             <th>Response Message</th>
-                            <th>HTTP status</th>
                         </tr>
                         <tr>
-                            <td>No Account</td>
-                            <td>200</td>
+                            <td>NO ACCOUNT</td>
                         </tr>
                         <tr>
-                            <td>Active</td>
-                            <td>200</td>
+                            <td>ACTIVE</td>
                         </tr>
                         <tr>
-                            <td>Disabled</td>
-                            <td>200</td>
+                            <td>DISABLED</td>
                         </tr>
                         <tr>
-                            <td>Banned</td>
-                            <td>200</td>
+                            <td>BANNED</td>
                         </tr>
                     </table>
                 </div>
@@ -93,33 +87,33 @@
                 <span class="webRoute POST">POST</span>
                 <span>/api</span>
             </div>
-            <p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
+            <p class="additionalInfo red">Requires an elevated scope of <b>API_ACCESS</b></p>
             <p>Create a new API user account.</p>
             <details>
                 <summary>JSON payload:</summary>
                 <div style="padding:25px;">
                     <table>
                         <tr>
-                            <th>Field</th>
-                            <th>Data Type</th>
-                            <th>Description</th>
+                            <th>Field name</th>
+                            <th>Data type</th>
+                            <th>Field value description</th>
                         </tr>
                         <tr>
-                            <td>data</td>
-                            <td>String</td>
-                            <td>The user ID as a string</td>
+                            <td>discord_id</td>
+                            <td>Long</td>
+                            <td>The discord id as a long</td>
                         </tr>
                     </table>
                 </div>
             </details>
-            <p>Returns a 200 on successful creation or a 204 if the user already exists</p>
+            <p>Returns a 200 on successful creation or a 400 if the user already exists</p>
         </div>
         <div class="marginLow" id="patch-api">
             <div class="spanMargin">
                 <span class="webRoute PATCH">PATCH</span>
                 <span>/api</span>
             </div>
-            <p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
+            <p class="additionalInfo red">Requires an elevated scope of <b>API_ACCESS</b></p>
             <p>Reset and immediately invalid the old API key for an API user.</p>
             <details>
                 <summary>JSON payload:</summary>
@@ -131,49 +125,23 @@
                             <th>Description</th>
                         </tr>
                         <tr>
-                            <td>data</td>
-                            <td>String</td>
-                            <td>The user ID as a string</td>
+                            <td>discord_id</td>
+                            <td>Long</td>
+                            <td>The discord id as a long</td>
                         </tr>
                     </table>
                 </div>
             </details>
-            <p>Returns an API key object</p>
+            <p>Returns the api key</p>
         </div>
-        <div class="marginLow" id="patch-api-status">
-            <div class="spanMargin">
-                <span class="webRoute PATCH">PATCH</span>
-                <span>/api/status</span>
-            </div>
-            <p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
-            <p>Modify the active status for an API user. THIS IS NOT THE SAME AS BANNING.</p>
-            <details>
-                <summary>JSON payload:</summary>
-                <div style="padding:25px;">
-                    <table>
-                        <tr>
-                            <th>Field</th>
-                            <th>Data Type</th>
-                            <th>Description</th>
-                        </tr>
-                        <tr>
-                            <td>data</td>
-                            <td>String</td>
-                            <td>The user ID as a string</td>
-                        </tr>
-                    </table>
-                </div>
-            </details>
-            <p>Returns a JSON message as {"message":BOOL}. True = enabled, False = disabled.</p>
-        </div>
-        <div id="delete-api">
+        <div class="marginLow" id="delete-api">
             <div class="spanMargin">
                 <span class="webRoute DELETE">DELETE</span>
                 <span>/api</span>
             </div>
-            <p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
-            <p class="additionalInfo orange">Requires an audit log header (x-audit) with a minimum char count of 20.</p>
-            <p>Bans an API user account permanently. There are no appeal processes available at this time.</p>
+            <p class="additionalInfo red">Requires an elevated scope of <b>API_ACCESS</b></p>
+            <p class="additionalInfo orange">May require an audit log header (x-audit-reason) with a minimum char count of 10.</p>
+            <p>If the audit log header is missing then the default action is to disable the API user. If the header is present the default action is to ban the API user. </p>
             <details>
                 <summary>JSON payload:</summary>
                 <div style="padding:25px;">
@@ -184,25 +152,74 @@
                             <th>Description</th>
                         </tr>
                         <tr>
-                            <td>data</td>
-                            <td>String</td>
-                            <td>The user ID as a string</td>
+                            <td>discord_id</td>
+                            <td>Long</td>
+                            <td>The discord id as a long</td>
                         </tr>
                     </table>
                 </div>
             </details>
-            <p>Returns a 200 on successful ban or a 204 when already banned.</p>
+            <p>Returns a 200 on success or in the case of a failed ban 400 will be returned.</p>
         </div>
     </div>
     <div class="textContent">
         <h3 id="File">File</h3>
-        <div id="get-file">
+        <div class="marginLow" id="get-file">
             <div class="spanMargin">
                 <span class="webRoute GET">GET</span>
                 <span>/file?query={sha256}</span>
             </div>
             <p>Check a file's SHA256 hash with our database to see if a file <b>MIGHT</b> be malicious. THIS DOES NOT REPLACE ANTIVIRUS SOFTWARE.</p>
-            <p>Returns a <a href="#fileObject" class="a">FILE</a> object.<p></p>
+            <p>Returns a <a href="docs/api/objects#file" class="a">FILE</a> object.</p>
+            <div class="spanMargin">
+                <span class="webRoute GET">GET</span>
+                <span>/file?id={id_long}</span>
+            </div>
+            <p>Check an ID with our database to see what that file's result is. THIS DOES NOT REPLACE ANTIVIRUS SOFTWARE.</p>
+            <p>Returns a <a href="docs/api/objects#file" class="a">FILE</a> object.</p>
+            <div class="spanMargin">
+                <span class="webRoute GET">GET</span>
+                <span>/file?page={long}</span>
+            </div>
+            <p class="additionalInfo red">Requires an elevated scope of <b>ARRAY_ACCESS</b></p>
+            <p>Retrieve 50 results per page. THIS DOES NOT REPLACE ANTIVIRUS SOFTWARE.</p>
+            <p>Returns a <a href="docs/api/objects#file" class="a">FILE</a> ARRAY object.</p>
+        </div>
+        <div class="marginLow" id="patch-file">
+            <div class="spanMargin">
+                <span class="webRoute PATCH">PATCH</span>
+                <span>/file</span>
+            </div>
+            <p class="additionalInfo red">Requires an elevated scope of <b>MANAGE_FILE</b></p>
+            <p>Modify the File data</p>
+            <details>
+                <summary>JSON payload:</summary>
+                <div style="padding:25px;">
+                    <table>
+                        <tr>
+                            <th>Field</th>
+                            <th>Data Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>sha256</td>
+                            <td>String</td>
+                            <td>The file's sha256 hex as string</td>
+                        </tr>
+                        <tr>
+                            <td>sample_available</td>
+                            <td>Boolean</td>
+                            <td>The OPTIONAL sample available result as boolean</td>
+                        </tr>
+                        <tr>
+                            <td>classification</td>
+                            <td>String</td>
+                            <td>The OPTIONAL classification as String</td>
+                        </tr>
+                    </table>
+                </div>
+            </details>
+            <p>This will default to running sample_available only if both are set. Returns 200 on success</p>
         </div>
     </div>
     <div class="textContent">
@@ -210,18 +227,34 @@
         <div class="marginLow" id="get-url">
             <div class="spanMargin">
                 <span class="webRoute GET">GET</span>
-                <span>/url?query={full-url-with-protocol}</span>
+                <span>/url?query={subdomain.domain.tld}</span>
             </div>
             <p>Check a URL with our database to see if a URL <b>MIGHT</b> be malicious. THIS DOES NOT REPLACE ANTIVIRUS SOFTWARE.</p>
-            <p>Returns a <a href="urlObject" class="a">URL</a> object.<p></p>
+            <p>Returns a <a href="docs/api/objects#url" class="a">URL</a> object.</p>
+            <div class="spanMargin">
+                <span class="webRoute GET">GET</span>
+                <span>/url?page={long}</span>
+            </div>
+            <div class="spanMargin">
+                <span class="webRoute GET">GET</span>
+                <span>/url?id={id_long}</span>
+            </div>
+            <p>Check an ID with our database to see what that url's result is. THIS DOES NOT REPLACE ANTIVIRUS SOFTWARE.</p>
+            <p>Returns a <a href="docs/api/objects#url" class="a">URL</a> object.</p>
+            <div class="spanMargin">
+                <span class="webRoute GET">GET</span>
+                <span>/url?page={long}</span>
+            </div>
+            <p class="additionalInfo red">Requires an elevated scope of <b>ARRAY_ACCESS</b></p>
+            <p>Retrieve 50 results per page. THIS DOES NOT REPLACE ANTIVIRUS SOFTWARE.</p>
+            <p>Returns a <a href="docs/api/objects#url" class="a">URL</a> ARRAY object.</p>
         </div>
         <div id="post-url">
             <div class="spanMargin">
                 <span class="webRoute POST">POST</span>
                 <span>/url</span>
             </div>
-            <p class="additionalInfo red">Requires an elevated scope of <b>SERVICE</b></p>
-            <p class="additionalInfo orange">Requires an audit log header (x-audit) with a minimum char count of 20.</p>
+            <p class="additionalInfo red">Requires an elevated scope of <b>MANAGE_URL</b></p>
             <p>Creates a new URL resource</p>
             <details>
                 <summary>JSON payload:</summary>
@@ -233,14 +266,50 @@
                             <th>Description</th>
                         </tr>
                         <tr>
-                            <td>data</td>
+                            <td>url</td>
                             <td>String</td>
-                            <td>The full URL with protocol.</td>
+                            <td>The url as subdomain.domain.tld as String.</td>
+                        </tr>
+                        <tr>
+                            <td>reason</td>
+                            <td>String</td>
+                            <td>The blacklisting reason</td>
                         </tr>
                     </table>
                 </div>
             </details>
-            <p>Returns a 204 on successful creation.</p>
+            <p>Returns a 200 on successful creation.</p>
+        </div>
+        <div id="patch-url">
+            <div class="spanMargin">
+                <span class="webRoute PATCH">PATCH</span>
+                <span>/url</span>
+            </div>
+            <p class="additionalInfo red">Requires an elevated scope of <b>MANAGE_URL</b></p>
+            <p>Modify a URL resource</p>
+            <details>
+                <summary>JSON payload:</summary>
+                <div style="padding:25px;">
+                    <table>
+                        <tr>
+                            <th>Field</th>
+                            <th>Data Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td>url</td>
+                            <td>String</td>
+                            <td>The url as subdomain.domain.tld as String.</td>
+                        </tr>
+                        <tr>
+                            <td>reason</td>
+                            <td>String</td>
+                            <td>The blacklisting reason</td>
+                        </tr>
+                    </table>
+                </div>
+            </details>
+            <p>Returns a 200 on successful edit.</p>
         </div>
     </div>
 </div>
