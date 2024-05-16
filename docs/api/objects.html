@@ -104,15 +104,11 @@
     <div class="textContent">
         <h3 id="role">ROLE</h3>
         <p>Represents a Role object. This is not returned to the user at any time!</p>
-        <p>Roles are just permission bits (we currently use u16 for the nerds out there wondering). Each bit is either toggled on or off.</p>
+        <p>Roles are just permission bits (we currently use 32 bit ints for the nerds out there wondering). Each bit is either toggled on or off.</p>
         <table>
             <tr>
                 <th>Role Name</th>
                 <th>Notes</th>
-            </tr>
-            <tr>
-                <td>USER</td>
-                <td>The default role that everyone will have.</td>
             </tr>
             <tr>
                 <td>API_ACCESS</td>
@@ -164,7 +160,5 @@
         </table>
     </div>
 </div>
-
-<script src="../js/api.js"></script>
 </body>
 </html>
