@@ -1,0 +1,105 @@
+body {
+	margin: 0;
+	background-color: #2f3445;
+}
+nav {
+	overflow: hidden;
+	margin: 15px 5px;
+	height: 60px;
+	top: 0;
+}
+nav a {
+	float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 18px 25px;
+    text-decoration: none;
+    font-size: 20px;
+}
+nav div {
+	float: left;
+    color: #f2f2f2;
+	padding: 16px 0px;
+    text-align: center;
+    margin-left: 5px;
+    font-size: 25px;
+}
+.owo {
+	display: none;
+}
+nav img{
+	float: left;
+	width: 60px;
+	height: 60px;
+}
+
+nav a:hover {
+	background-color: #ddd;
+	color: black;
+}
+
+.sidenav {
+	display: none;
+	height: 100%;
+	width: 250px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	padding-top: 60px;
+}
+
+.sidenav a {
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #818181;
+	display: block;
+}
+
+.sidenav a:hover {
+	color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+	color: red;
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+	.sidenav {padding-top: 15px;}
+	.sidenav a {font-size: 18px;}  
+}
+@media screen and (max-width: 650px) {
+	nav a{display:none;}
+	.owo{display:block;}
+}
+.content{
+	padding: 15px;
+	color: #c9c9c9;
+}
+.hero{
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	height: 100vh;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("../img/404.jpg");
+}
+.heroText{
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+}
+.roboto{
+	font-family: "Roboto", sans-serif;
+}
