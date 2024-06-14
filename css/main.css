@@ -75,14 +75,12 @@ nav a:hover {
 @media screen and (max-height: 450px) {
 	.sidenav {padding-top: 15px;}
 	.sidenav a {font-size: 18px;}
-	.col3 {width: 100%;padding:0;}
-	.col5 {width: 100%;padding:0;}
 }
 @media screen and (max-width: 650px) {
 	nav a{display:none;}
 	.owo{display:block;}
-	.col3 {width: 100%;padding:0;}
-	.col5 {width: 100%;padding:0;}
+	.col3 {width: 100%!important;padding:0!important;}
+	.col5 {width: 100%!important;padding:0!important;}
 }
 .content{
 	padding: 15px;
