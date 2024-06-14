@@ -27,7 +27,7 @@
                     <span class="fs-3 d-none d-sm-inline">Docs: API</span>
                 </a>
                 <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <span class="d-none d-sm-inline">Endpoint - API</span>
+                    <span class="d-none d-sm-inline">Endpoint - Quiz</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start">
                     <li>
@@ -82,39 +82,49 @@
             </div>
         </div>
         <div class="col py-3" style="background-color: rgb(19 4 30) !important;">
-            <h3 id="api">API</h3>
+            <h3 id="api">Quiz</h3>
             <br>
             <p class="lead">
-                The api endpoint is for modifying authentication and authorisation of a user.
+                The quiz endpoint is for generating random quizes.
             </p>
             <div class="card">
                 <div class="card-header">
-                    <span class="badge badge-primary bg-success fs-5"> GET </span> <code class="fs-5">/api?query={ user.id }</code>
+                    <span class="badge badge-primary bg-success fs-5"> GET </span> <code class="fs-5">/quiz?amount={ INTEGER }</code>
                 </div>
                 <div class="card-body">
-                    <div class="alert alert-danger" role="alert">
-                        Accounts accessing this endpoint require the following permissions: API_ACCESS
+                    <div class="alert alert-primary" role="alert">
+                        This endpoint will only return a maximum of 10 items.
                     </div>
-                    <p>Get the API status of a user account.</p>
+                    <div class="alert alert-primary" role="alert">
+                        You can also specify which category by adding <code>&category={ STRING }</code> to the request.
+                    </div>
                 </div>
                 <div class="card-footer">
-                    <p>Returns <code>Status: 200</code> with one of the following JSON bodies:</p>
-                    <p><samp>"{message : NO ACCOUNT}"</samp></p>
-                    <p><samp>"{message : ACTIVE}"</samp></p>
-                    <p><samp>"{message : DISABLED}"</samp></p>
-                    <p><samp>"{message : BANNED}"</samp></p>
+                    <p>Returns an array of <code><a href="docs/api/objects#quiz">Quiz</a></code> objects.</p>
                 </div>
             </div>
             <br>
             <div class="card">
                 <div class="card-header">
-                    <span class="badge badge-primary bg-primary fs-5"> POST </span> <code class="fs-5">/api</code>
+                    <span class="badge badge-primary bg-success fs-5"> GET </span> <code class="fs-5">/quiz/review</code>
                 </div>
                 <div class="card-body">
                     <div class="alert alert-danger" role="alert">
-                        Accounts accessing this endpoint require the following permissions: API_ACCESS
+                        Accounts accessing this endpoint require the following permissions: MANAGE_QUIZ
                     </div>
-                    <p>Create a new API user account.</p>
+                    <p>This endpoint will return a single pending quiz awaiting validation.</p>
+                </div>
+                <div class="card-footer">
+                    <p>Returns a pending<code><a href="docs/api/objects#quiz">Quiz</a></code> object.</p>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    <span class="badge badge-primary bg-primary fs-5"> POST </span> <code class="fs-5">/quiz</code>
+                </div>
+                <div class="card-body">
+                    <p>Create a new pending quiz.</p>
                     <h5>JSON Parameters</h5>
                     <table class="table table-striped">
                         <thead>
@@ -126,9 +136,44 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <th scope="row">discord_id</th>
+                            <th scope="row">id</th>
+                            <td>Long</td>
+                            <td>The id within the database</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">question</th>
                             <td>String</td>
-                            <td>A non-null string of the discord ID</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">answer</th>
+                            <td>String</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">wrong_a</th>
+                            <td>String</td>
+                            <td>The first wrong answer</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">wrong_b</th>
+                            <td>String</td>
+                            <td>The second wrong answer</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">wrong_c</th>
+                            <td>String</td>
+                            <td>The third wrong answer</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">category</th>
+                            <td>String</td>
+                            <td>The category of the quiz</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">tags</th>
+                            <td>String</td>
+                            <td>This field is depreciated and will be removed soon</td>
                         </tr>
                         </tbody>
                     </table>
@@ -140,13 +185,13 @@
             <br>
             <div class="card">
                 <div class="card-header">
-                    <span class="badge badge-primary bg-warning fs-5 text-dark"> PATCH </span> <code class="fs-5">/api</code>
+                    <span class="badge badge-primary bg-warning fs-5 text-dark"> PATCH </span> <code class="fs-5">/quiz</code>
                 </div>
                 <div class="card-body">
                     <div class="alert alert-danger" role="alert">
-                        Accounts accessing this endpoint require the following permissions: API_ACCESS
+                        Accounts accessing this endpoint require the following permissions: MANAGE_QUIZ
                     </div>
-                    <p>Reset and immediately invalid the old API key for an account.</p>
+                    <p>Approve a quiz for general usage</p>
                     <h5>JSON Parameters</h5>
                     <table class="table table-striped">
                         <thead>
@@ -158,45 +203,9 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <th scope="row">discord_id</th>
-                            <td>String</td>
-                            <td>A non-null string of the discord ID</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="card-footer">
-                    <p>Returns <code>Status: 200</code> with the api key. Example:</p>
-                    <p><samp>"{message : API_KEY_FOR_YOU_ENJOY_YOUR_NEW_KEY}"</samp></p>
-                </div>
-            </div>
-            <br>
-            <div class="card">
-                <div class="card-header">
-                    <span class="badge badge-primary bg-danger fs-5"> DELETE </span> <code class="fs-5">/api</code>
-                </div>
-                <div class="card-body">
-                    <div class="alert alert-danger" role="alert">
-                        Accounts accessing this endpoint require the following permissions: API_ACCESS
-                    </div>
-                    <div class="alert alert-warning" role="alert">
-                        This endpoint supports the audit log header (x-audit-reason).
-                    </div>
-                    <p>If the audit log header is missing then the default action is to disable the API user. If the header is present the default action is to ban the API user.</p>
-                    <h5>JSON Parameters</h5>
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th scope="col">Field</th>
-                            <th scope="col">Data Type</th>
-                            <th scope="col">Notes</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">discord_id</th>
-                            <td>String</td>
-                            <td>A non-null string of the discord ID</td>
+                            <th scope="row">id</th>
+                            <td>long</td>
+                            <td>A non-null long of the quiz id</td>
                         </tr>
                         </tbody>
                     </table>
@@ -205,6 +214,38 @@
                     <p>Returns <code>Status: 200</code></p>
                 </div>
             </div>
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    <span class="badge badge-primary bg-danger fs-5"> DELETE </span> <code class="fs-5">/quiz</code>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-danger" role="alert">
+                        Accounts accessing this endpoint require the following permissions: MANAGE_QUIZ
+                    </div>
+                    <h5>JSON Parameters</h5>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Field</th>
+                            <th scope="col">Data Type</th>
+                            <th scope="col">Notes</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">id</th>
+                            <td>long</td>
+                            <td>A non-null long of the quiz ID</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <p>Returns <code>Status: 200</code></p>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

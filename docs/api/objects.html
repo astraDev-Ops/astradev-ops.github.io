@@ -346,8 +346,14 @@
                         <td>Access POST/PATCH/DELETE endpoints to URL endpoint</td>
                     </tr>
                     <tr>
+                        <th scope="row">MANAGE_URL</th>
+                        <td>1 << 16</td>
+                        <td>API SERVER</td>
+                        <td>Access PATCH/DELETE and GET(REVIEW) endpoints to QUIZ endpoint</td>
+                    </tr>
+                    <tr>
                         <th scope="row">NOT IN USE </th>
-                        <td>1 << 16 -  1 << 29 </td>
+                        <td>1 << 17 -  1 << 29 </td>
                         <td>UNDOCUMENTED</td>
                         <td>UNDOCUMENTED</td>
                     </tr>
@@ -359,8 +365,59 @@
                 <h3>Quiz</h3>
                 <br>
                 <p class="lead">
-                    This endpoint is currently being finalised and has not been released.
+                    The quiz endpoint data.
                 </p>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Field</th>
+                        <th scope="col">Data Type</th>
+                        <th scope="col">Notes</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">id</th>
+                        <td>Long</td>
+                        <td>The id within the database</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">question</th>
+                        <td>String</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">answer</th>
+                        <td>String</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">wrong_a</th>
+                        <td>String</td>
+                        <td>The first wrong answer</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">wrong_b</th>
+                        <td>String</td>
+                        <td>The second wrong answer</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">wrong_c</th>
+                        <td>String</td>
+                        <td>The third wrong answer</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">category</th>
+                        <td>String</td>
+                        <td>The category of the quiz</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">tags</th>
+                        <td>String</td>
+                        <td>This field is depreciated and will be removed soon</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
             <br><br>
             <div id="url">
