@@ -79,6 +79,7 @@ nav a:hover {
 @media screen and (max-width: 650px) {
 	nav a{display:none;}
 	.owo{display:block;}
+	.flex-item-20{width: 100%!important;}
 	.col3 {width: 100%!important;padding:0!important;}
 	.col5 {width: 100%!important;padding:0!important;}
 }
