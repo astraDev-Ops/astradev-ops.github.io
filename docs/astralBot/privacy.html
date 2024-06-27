@@ -54,20 +54,22 @@
             <ol>
                 <li>The guild ID that the bot has been in.</li>
                 <li>User IDs of those that have interacted with the bot.</li>
-                <li>User IDs of known compromised accounts linked with delivery of malicious packages/nefarious purposes</li>
             </ol>
             <h5>What about the file checker?</h5>
             <p>We don't keep those files. We download the file into memory (RAM), convert the bytes into a sha256 hash, delete the download from memory and send the hash to be scanned.</p>
             <p>At no point will any file be saved FROM ANY DISCORD message.</p>
 
             <h5>What about my messages?</h5>
-            <p>We don't log or store them. If you send a malicious URL that the bot detects the log file will tell us that:</p>
+            <p>We don't log or store them. If you send a malicious URL or File that the bot detects the log file will tell us that:</p>
             <ul>
-                <li>A guild had a malicious link</li>
-                <li>What the link was</li>
+                <li>A guild had a malicious object sent</li>
+                <li>What the object was (link or hash)</li>
             </ul>
+            <p>An example log would be: <code>A malicious file was detected in 204444171661082624 with the hash: 275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f</code></p>
+            <p>An example log would be: <code>A malicious link was detected in 204444171661082624 with the domain: google.com</code></p>
+
             <h5>What about your log files</h5>
-            <p>Guild IDs are the only thing that will show in log files, never User IDs. Log files usually get cleared monthly however most of the time the files are empty.</p>
+            <p>Guild IDs are the only thing that will show in log files, never User IDs. Log files get cleared monthly however most of the time the files are empty anyway.</p>
             <h5>Who do you sell your user data to?</h5>
             <p>No one.</p>
             <h5>I want my data removed</h5>
