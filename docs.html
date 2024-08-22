@@ -1,54 +1,63 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
 <head>
-	<meta charset="utf-8">
+	<link rel="icon" type="image/png" href="img/favicon.png">
 	<title>astraDev - DOCS</title>
 	<base href="/"/>
-	<!-- Latest compiled and minified CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-	<!-- Latest compiled JavaScript -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<link href="css/fontawesome.css" rel="stylesheet" />
-	<link href="css/fonts.css" rel="stylesheet" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="css/docs.css" rel="stylesheet" />
+	<link href="css/colours.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />	<title>astraDev</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital@0;1&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
-<body>
-<div class="container-fluid">
-	<div class="row flex-nowrap">
-		<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-			<div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-				<a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-					<span class="fs-3 d-none d-sm-inline">Docs: HOME</span>
-				</a>
-				<ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start">
-					<li class="nav-item">
-						<a href="docs/api" class="nav-link align-middle px-0 fs-5">API Docs</a>
-					</li>
-					<li class="nav-item">
-						<a href="docs/astralBot" class="nav-link align-middle px-0 fs-5">AstralBot Docs</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link align-middle px-0 fs-5" href="docs/privacy">Privacy Policy</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link align-middle px-0 fs-5" href="docs/tos">Terms of Usage</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="col py-3" style="background-color: rgb(19 4 30) !important;">
-			<h3>Documentation</h3>
-			<p class="lead">
-				Welcome to the home page of all things related to documentation for the astradev ecosystem. If you see any issues feel free to open an issue in our <a href="https://github.com/astraDev-Ops/astraDev">Github repo</a>.
-			</p>
+<body class="dark">
+<div id="sidebar" class="sidebar-background">
+	<img class="text hide" src="https://dash.astradev.xyz/images/logo.svg" width="80px">
+	<span id="open" class="open menu-text">&#9776;</span>
+	<span id="close" class="close hide menu-text">&times;</span>
+	<hr class="text hide">
+	<p style="text-align: right;">
+		<code class="text hide directory">docs</code>
+	</p>
+	<hr>
+	<div class="dropdown text-dropdown"><span class="text hide">astralBot</span><i class="fa-solid fa-angle-right" style="float:right;"></i>
+		<div class="dropdown_content">
+			<a href="docs/astral/setup">Setup</a>
+			<a href="docs/astral/tos">Privacy & TOS</a>
 		</div>
 	</div>
+	<hr>
+	<div class="dropdown text-dropdown"><span class="text hide">Dashboard</span><i class="fa-solid fa-angle-right" style="float:right;"></i>
+		<div class="dropdown_content">
+			<a>TBA</a>
+		</div>
+	</div>
+	<hr>
+	<div class="dropdown text-dropdown"><span class="text hide">Others</span><i class="fa-solid fa-angle-right" style="float:right;"></i>
+		<div class="dropdown_content">
+			<a href="docs/others/perms">Permissions</a>
+			<a href="docs/others/tos">TOS - Websites</a>
+		</div>
+	</div>
+	<hr>
+	<a href="docs"><i class="fa-solid fa-folder-open"></i><span class="text hide"> Docs Home</span></a>
+	<a href="/"><i class="fa-solid fa-house"></i><span class="text hide"> Exit Docs</span></a>
 </div>
+<div id="content">
+	<div class="item_box content-background">
+		<h2>astraDev Documentation</h2>
+		<hr>
+		<p>Welcome to the documentation page for all things relating to the astraDev ecosystem. Here you will find the various services and how to interact with them along with potential troubleshooting tips.</p>
+		<div class="alert info">
+			<span>If you find any issues with the docs feel free to open a <a style="font-weight:bold;" href="https://github.com/astraDev-Ops/astraDev">github issue</a></span>
+		</div>
+		<p>Please use the nav bar to the left to navigate around (please ensure you expand the nav bar first).</p>
+	</div>
+</div>
+<script src="js/docs_nav.js"></script>
 </body>
 </html>

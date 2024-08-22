@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <title>astraDev - DOCS</title>
+    <base href="/"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/docs.css" rel="stylesheet" />
+    <link href="css/colours.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />	<title>astraDev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body class="dark">
+<div id="sidebar" class="sidebar-background">
+    <img class="text hide" src="https://dash.astradev.xyz/images/logo.svg" width="80px">
+    <span id="open" class="open menu-text">&#9776;</span>
+    <span id="close" class="close hide menu-text">&times;</span>
+    <hr class="text hide">
+    <p style="text-align: right;">
+        <code class="text hide directory">docs/astralBot/tos</code>
+    </p>
+    <hr>
+    <div class="dropdown text-dropdown"><span class="text hide">astralBot</span><i class="fa-solid fa-angle-right" style="float:right;"></i>
+        <div class="dropdown_content">
+            <a href="docs/astral/setup">Setup</a>
+            <a href="docs/astral/tos">Privacy & TOS</a>
+        </div>
+    </div>
+    <hr>
+    <div class="dropdown text-dropdown"><span class="text hide">Dashboard</span><i class="fa-solid fa-angle-right" style="float:right;"></i>
+        <div class="dropdown_content">
+            <a>TBA</a>
+        </div>
+    </div>
+    <hr>
+    <div class="dropdown text-dropdown"><span class="text hide">Others</span><i class="fa-solid fa-angle-right" style="float:right;"></i>
+        <div class="dropdown_content">
+            <a href="docs/others/perms">Permissions</a>
+            <a href="docs/others/tos">TOS - Websites</a>
+        </div>
+    </div>
+    <hr>
+    <a href="docs"><i class="fa-solid fa-folder-open"></i><span class="text hide"> Docs Home</span></a>
+    <a href="/"><i class="fa-solid fa-house"></i><span class="text hide"> Exit Docs</span></a>
+</div>
+<div id="content">
+    <div class="item_box content-background">
+        <h2>Terms of Service (TOS)</h2>
+        <hr>
+        <p>By using the Discord bot (astralBot) you are agreeing to:</p>
+        <ul>
+            <li>Follow Discord's Terms of Service</li>
+            <li>Not use the bot to attempt to distribute malicious or damaging content which can include:</li>
+            <ul>
+                <li>Malware</li>
+                <li>IP grabber links</li>
+                <li>NSFW/NSFL content</li>
+                <li>This list is not a complete list but should give you a good idea</li>
+            </ul>
+            <li>Not use this bot to attempt to deceive or scam other users</li>
+            <li>Not exploit any code vulnerabilities that may be present within the codebase</li>
+        </ul>
+        <div class="alert error">
+            <span>Users who are found to be in violation of this policy may be restricted with their ability interact with the bot permanently.</span>
+        </div>
+    </div>
+    <div class="item_box content-background">
+        <h2>Privacy Policy</h2>
+        <hr>
+        <p>This privacy policy explains what we can and cannot do with your data when you interact with the discord bot.
+            We have kept it nice and simple because we do not want much data.</p>
+        <h4>What do we collect:</h4>
+        <ul>
+            <li>The guild id the bot is in or has been in</li>
+            <li>The Discord User Id snowflake of those who have interacted with the bot</li>
+            <li>The MD5, SHA256, SHA512 hash of any file uploaded to a server with the bot</li>
+        </ul>
+        <h4>File & URL scanner</h4>
+        <p>The function of this is purely:</p>
+        <ol>
+            <li>You send a file/url on any server with the bot</li>
+            <li>The bot will download the file and convert the bytes to the respective md5, sha256, sha512 hashes</li>
+            <li>The bot will then discard the downloaded file and keep the hashes and check the hash against our database</li>
+        </ol>
+        <p>At no point will the bot save your uploaded files unless you explicitly send the file to a developer and tell us to save it (assuming its not illegal for us to have).</p>
+        <h4>What about our messages?</h4>
+        <p>The bot does not store or log messages and there are zero plans to add this in.</p>
+        <h4>What about server infraction logs?</h4>
+        <p>Yes, the bot will store the discord snowflake of the moderator and user in question along with the reason. At no point will the developers remove infraction data from other guilds on request (unless you are requesting your own guild data removal).<p>
+        <h4>Who do you sell your user data to?</h4>
+        <p>No one.</p>
+        <h4>I want my data removed or a copy of it</h4>
+        <p>Sure, we will happily delete your data on request (with the exception of personal infraction data) or send you a copy your user data (with the exception of personal infraction data).</p>
+        <h4>Questions?</h4>
+        <p>Reach out to us on discord or open a Github issue.</p>
+    </div>
+</div>
+<script src="js/docs_nav.js"></script>
+</body>
+</html>
