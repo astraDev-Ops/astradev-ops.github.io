@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <title>astraDev - DOCS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/documents.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<nav class="noSelect">
+    <div class="logo">
+        <i class="fa-solid fa-bars pointer hide" style="font-size: x-large;"></i>
+        <img src="img/logo-white.png" style="height: 4rem;">
+    </div>
+</nav>
+<div class="sidebar noSelect">
+    <a class="title" href="/">Home</a>
+    <a class="title" href="/docs">Intro</a>
+    <hr>
+    <a class="title">API</a>
+    <a href="/docs/api/file">File</a>
+    <a href="/docs/api/link">Link</a>
+    <a class="active" href="/docs/api/logging">Logging</a>
+    <a href="/docs/api/status">Status</a>
+    <a href="/docs/api/statistics">Statistics</a>
+    <hr>
+    <a class="title">Privacy & TOS</a>
+    <a href="/docs/tos/website">Websites</a>
+    <a href="/docs/tos/astralBot">astralBot</a>
+    <hr>
+    <a class="title">Others</a>
+</div>
+<div class="content">
+    <h1>API / LOGGING</h1>
+    <p>This endpoint is a private endpoint for observing and managing the various logs from all astraDev managed services.</p>
+    <div class="error">This endpoint is secured and requires authentication and authorization for usage.</div>
+    <hr>
+    <h3>Logging Object</h3>
+    <table>
+        <tr>
+            <th>Field</th>
+            <th>Data Type</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>id</td>
+            <td>u64</td>
+            <td>The log id</td>
+        </tr>
+        <tr>
+            <td>service</td>
+            <td>String</td>
+            <td>The service the log oringated from</td>
+        </tr>
+        <tr>
+            <td>level</td>
+            <td>String</td>
+            <td>The log severity level</td>
+        </tr>
+        <tr>
+            <td>message</td>
+            <td>String</td>
+            <td>The log message</td>
+        </tr>
+        <tr>
+            <td>time</td>
+            <td>u64</td>
+            <td>The date the log was added to the local database (epoch millisecond)</td>
+        </tr>
+        <tr>
+            <td>trace?</td>
+            <td>String</td>
+            <td>The stacktrace</td>
+        </tr>
+        <tr>
+            <td>className</td>
+            <td>String</td>
+            <td>The class the log came from</td>
+        </tr>
+    </table>
+    <br>
+    <hr>
+    <h3>Routes</h3>
+    <div class="bubble GET">GET</div> <span class="bubble ENDPOINT">/logging</span>
+    <div>Returns an estimated count of logs per service</div>
+    <br>
+    <div class="bubble GET">GET</div> <span class="bubble ENDPOINT">/logging?id=<code>u64</code></span>
+    <div>Returns an Log object from the log ID</div>
+    <br>
+    <div class="bubble GET">GET</div> <span class="bubble ENDPOINT">/logging?page=<code>u32</code></span>
+    <div>Returns a list of Log objects for a page (10 logs per page)</div>
+    <br>
+    <div class="bubble GET">GET</div> <span class="bubble ENDPOINT">/logging?service=<code>STRING</code></span>
+    <div>Returns a list of Log objects based on the service (10 per page if coupled with page)</div>
+    <br>
+    <div class="bubble GET">GET</div> <span class="bubble ENDPOINT">/logging?critical=<code>BOOLEAN</code></span>
+    <div>Returns a liast of Log objects based on the high critical levels (10 per page if coupled with page)</div>
+    <br>
+    <div class="bubble PATCH">PATCH</div> <span class="bubble ENDPOINT">/logging</span>
+    <div>Returns 200 on successful log escalation or 204 on failure to escalate</div>
+    <h4>JSON</h4>
+    <table>
+        <tr>
+            <th>Key</th>
+            <th>Data Type</th>
+        </tr>
+        <tr>
+            <td>id</td>
+            <td>u64</td>
+        </tr>
+    </table>
+    <br>
+    <div class="bubble DELETE">DELETE</div> <span class="bubble ENDPOINT">/logging</span>
+    <div>Returns 200 on successful log deletion or 204 on failure to delete</div>
+    <h4>JSON</h4>
+    <table>
+        <tr>
+            <th>Key</th>
+            <th>Data Type</th>
+        </tr>
+        <tr>
+            <td>id</td>
+            <td>u64</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
