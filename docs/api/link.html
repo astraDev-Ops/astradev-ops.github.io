@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <title>astraDev - DOCS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/documents.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<nav class="noSelect">
+    <div class="logo">
+        <i class="fa-solid fa-bars pointer hide" style="font-size: x-large;"></i>
+        <img src="img/logo-white.png" style="height: 4rem;">
+    </div>
+</nav>
+<div class="sidebar noSelect">
+    <a class="title" href="/">Home</a>
+    <a class="title active" href="/docs">Intro</a>
+    <hr>
+    <a class="title">API</a>
+    <a href="/api/file">File</a>
+    <a class="active" href="/api/link">Link</a>
+    <a href="/api/logging">Logging</a>
+    <a href="/api/status">Status</a>
+    <a href="/api/statistics">Statistics</a>
+    <hr>
+    <a class="title">Privacy & TOS</a>
+    <a href="/tos/website">Websites</a>
+    <a href="/tos/astralBot">astralBot</a>
+    <hr>
+    <a class="title">Others</a>
+</div>
+<div class="content">
+    <h1>API / FILES</h1>
+    <p>This endpoint is for sending <b>domains</b> to determine if a link is known to be malicious.</p>
+    <div class="error">At no point should this endpoint be used in a production environment as the SOLE antimalware solution! This endpoint is not guaranteed to be 100% accurate.</div>
+    <hr>
+    <h3>Link Object</h3>
+    <table>
+        <tr>
+            <th>Field</th>
+            <th>Data Type</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>domain</td>
+            <td>String</td>
+            <td>The website domain + subdomains</td>
+        </tr>
+        <tr>
+            <td>isWhitelisted</td>
+            <td>boolean</td>
+            <td>If the domain is internally whitelisted</td>
+        </tr>
+        <tr>
+            <td>banned?</td>
+            <td>String</td>
+            <td>The reason the domain is banned</td>
+        </tr>
+    </table>
+    <br>
+    <hr>
+    <h3>Routes</h3>
+    <div class="bubble GET">GET</div> <span class="bubble ENDPOINT">/link?domain=<code>domain</code></span>
+    <div>Returns a Link object</div>
+</div>
+</body>
+</html>
