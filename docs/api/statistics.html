@@ -27,8 +27,8 @@
     <a href="/docs/api/file">File</a>
     <a href="/docs/api/link">Link</a>
     <a href="/docs/api/logging">Logging</a>
-    <a class="active" href="/docs/api/status">Status</a>
-    <a href="/docs/api/statistics">Statistics</a>
+    <a href="/docs/api/status">Status</a>
+    <a class="active" href="/docs/api/statistics">Statistics</a>
     <hr>
     <a class="title">Privacy & TOS</a>
     <a href="/docs/tos/website">Websites</a>
@@ -37,14 +37,40 @@
     <a class="title">Others</a>
 </div>
 <div class="content">
-    <h1>API / STATUS</h1>
-    <p>This endpoint is for testing if the API is accessible.</p>
+    <h1>API / STATISTICS</h1>
+    <p>This endpoint for viewing any public service statistics</p>
     <hr>
+    <h3>Statistics Object</h3>
+    <table>
+        <tr>
+            <th>Field</th>
+            <th>Data Type</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>scannedFiles</td>
+            <td>u64</td>
+            <td>Number of files scanned</td>
+        </tr>
+        <tr>
+            <td>detectedFiles</td>
+            <td>u64</td>
+            <td>Number of files detected as positive</td>
+        </tr>
+        <tr>
+            <td>scannedLinks</td>
+            <td>u64</td>
+            <td>Number of links scanned</td>
+        </tr>
+        <tr>
+            <td>detectedLinks</td>
+            <td>u64</td>
+            <td>Number of links detected as positive</td>
+        </tr>
+    </table>
     <h3>Routes</h3>
-    <div class="bubble GET">GET</div> <span class="bubble ENDPOINT">/status</span>
-    <div>Returns HTTP status 200 if API can be accessed.</div>
-    <div class="info">This endpoint does not return a JSON body in v6</div>
-
+    <div class="bubble GET">GET</div> <span class="bubble ENDPOINT">/statistics</span>
+    <div>Returns a Statistics object.</div>
 </div>
 </body>
 </html>
